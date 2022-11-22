@@ -7,12 +7,13 @@ const RegisterForm = () => {
   const initialCredentials = {
     name:'',
     email:'',
-    age:16,
+    age: 16,
     password:'',
     katas:[],
     confirm:''
   }
   
+  //yup validation schema
   const registerSchema = Yup.object().shape(
       {
         name: Yup.string()
@@ -38,7 +39,6 @@ const RegisterForm = () => {
   )
   return (
     <div>
-      <h3>RegisterForm</h3>
       <Formik
           initialValues={initialCredentials}
           validationSchema={registerSchema}
@@ -121,15 +121,13 @@ const RegisterForm = () => {
 
             {
                 isSubmitting ? (<p>User Register Successfully...</p>) :null 
-            }
-                            
+            }                         
             </Form>
             )
-          }
-        
+          } 
       </Formik>
     </div>
   )
 }
 
-export default RegisterForm
+export default RegisterForm;

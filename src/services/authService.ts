@@ -40,3 +40,4 @@ export const register = async(email:string, password:string, name:string, age:nu
 
     return data;
 }
+

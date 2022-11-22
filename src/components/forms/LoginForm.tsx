@@ -1,29 +1,30 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { useNavigate } from 'react-router-dom';
 
 import * as Yup from 'yup';
 import { login } from '../../services/authService';
 
 
 
-// define schema validation with yup
-const loginSchema = Yup.object().shape(
-    {
-        email: Yup.string().email('Invalid Email Format').required('Email is required'),
-        password: Yup.string().required('Password is required')
-    }
-);
 
 // define component
 const LoginForm = () => {
+    const navigate = useNavigate();
 
     const initialCredentials = {
         email:'',
         password:''
     }
-
+    // define schema validation with yup
+    const loginSchema = Yup.object().shape(
+        {
+            email: Yup.string().email('Invalid Email Format').required('Email is required'),
+            password: Yup.string().required('Password is required')
+        }
+    );
+    
     return (
     <div>
-        <h3>Login Form</h3>
         <Formik
             /**  config formik */
             initialValues = {initialCredentials}
@@ -33,8 +34,8 @@ const LoginForm = () => {
                 const {data} = await login(values.email, values.password)
                         alert(JSON.stringify(values, null, 2))
                         console.table(values)
-                        sessionStorage.setItem('sessionJWT', data.token)
-                        //navigate('/')
+                        sessionStorage.setItem('sessionJWT',data.res.token)
+                        navigate('/')
             }}
         >
             
@@ -62,7 +63,7 @@ const LoginForm = () => {
                             {
                                 errors.email && touched.email && (<ErrorMessage name='email' component='div'></ErrorMessage>)
                             }
-
+                            <br />
                             {/* password */}
                             <label htmlFor='password'>Password: {' '}</label>
                             <Field
@@ -84,7 +85,7 @@ const LoginForm = () => {
 
                             {/* message if the form submit */}
                             {
-                                isSubmitting ? (<p>Checking credentiasl...</p>) :null 
+                                isSubmitting ? (<p>Checking credentiasl...</p>) : null 
                             }
                     </Form>
                 )
@@ -94,4 +95,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default LoginForm;
