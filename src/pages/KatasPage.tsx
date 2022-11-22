@@ -7,10 +7,9 @@ import { Kata } from '../utils/types/Kata.types';
 
 
 const KatasPage = () => {
-    //state of components
     const [katas, setKatas] = useState([]);
-    const [, setTotalPages] = useState(1);
-    const [, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
 
     //para verificar que el usuario esta autenticado
     let token = useSessionJWT('sessionJWT');
@@ -35,7 +34,7 @@ const KatasPage = () => {
 
       
       }
-    },[navigate, token])
+    },[token])
 
 
 
@@ -51,17 +50,17 @@ const KatasPage = () => {
         <div>
 
         { katas.length > 0 ? 
-                    <div style={{display:'grid',justifyContent:'center'}}>
+                    <div>
                         {/* TODO: Export to isolated Component */}
                         { katas.map((kata: Kata) => 
                             (
-                              <div key={kata._id} style={{margin:'5px', cursor:'pointer'}}>
-                                  <h3 onClick={() => handleClick(kata._id)}>Name: {kata.name}</h3>
-                                  <h4>Description: {kata.description}</h4>
-                                  <h5>Creator: {kata.creator}</h5>
-                                  <p>Rating: {kata.stars}</p>
-                                  <br/>
-                              </div>
+                                <div key={kata._id}>
+                                    <h3 onClick={() => handleClick(kata._id)} style={{display:'inline', cursor:'pointer'}}>Name: {kata.name}</h3>
+                                    <h4>Description: {kata.description}</h4>
+                                    <h5>Creator: {kata.creator}</h5>
+                                    <p>Rating: {kata.stars}</p>
+                                <br/>
+                                </div>
                             )
                         )}
                     </div>
