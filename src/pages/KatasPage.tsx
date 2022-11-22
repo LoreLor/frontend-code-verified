@@ -7,9 +7,10 @@ import { Kata } from '../utils/types/Kata.types';
 
 
 const KatasPage = () => {
+    //state of components
     const [katas, setKatas] = useState([]);
-    const [totalPages, setTotalPages] = useState(1);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [, setTotalPages] = useState(1);
+    const [, setCurrentPage] = useState(1);
 
     //para verificar que el usuario esta autenticado
     let token = useSessionJWT('sessionJWT');
@@ -19,7 +20,7 @@ const KatasPage = () => {
       if(!token){
         navigate('/login')
       }else{
-        getKatas(token,1,3).then((response:AxiosResponse) => {
+        getKatas(token).then((response:AxiosResponse) => {
           if(response.status === 200){
             console.table(response.data);
             let { katas, totalPages, currentPage} = response.data;
@@ -50,16 +51,17 @@ const KatasPage = () => {
         <div>
 
         { katas.length > 0 ? 
-                    <div>
+                    <div style={{display:'grid',justifyContent:'center'}}>
                         {/* TODO: Export to isolated Component */}
                         { katas.map((kata: Kata) => 
                             (
-                                <div key={kata._id}>
-                                    <h3 onClick={() => handleClick(kata._id)} >{kata.name}</h3>
-                                    <h4>{kata.description}</h4>
-                                    <h5>Creator: {kata.creator}</h5>
-                                    <p>Rating: {kata.stars}</p>
-                                </div>
+                              <div key={kata._id} style={{margin:'5px', cursor:'pointer'}}>
+                                  <h3 onClick={() => handleClick(kata._id)}>Name: {kata.name}</h3>
+                                  <h4>Description: {kata.description}</h4>
+                                  <h5>Creator: {kata.creator}</h5>
+                                  <p>Rating: {kata.stars}</p>
+                                  <br/>
+                              </div>
                             )
                         )}
                     </div>
