@@ -1,7 +1,6 @@
-import { AxiosResponse } from 'axios';
 import React, {useEffect, useState} from 'react'
 import { useNavigate, useParams} from 'react-router-dom';
-import Editor from '../components/editor/Editor';
+//import Editor from '../components/editor/Editor';
 import { useSessionJWT } from '../hooks/useSessionJWT';
 import { getKatasById } from '../services/katasServices';
 
@@ -38,7 +37,7 @@ const KatasDetailPage = () => {
         return navigate('/katas');
       }
   }
-}, [token]);
+}, [id, navigate, token]);
 
 const handleClick: any = ()=> {
   navigate('/katas')

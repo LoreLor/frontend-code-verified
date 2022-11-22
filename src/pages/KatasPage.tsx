@@ -35,7 +35,7 @@ const KatasPage = () => {
 
       
       }
-    },[token])
+    },[navigate, token])
 
 
 
