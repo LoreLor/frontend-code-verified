@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useNavigate, useParams} from 'react-router-dom';
-//import Editor from '../components/editor/Editor';
+
+import Editor from '../components/editor/Editor';
 import { useSessionJWT } from '../hooks/useSessionJWT';
 import { getKatasById } from '../services/katasServices';
 
@@ -8,63 +9,64 @@ import { getKatasById } from '../services/katasServices';
 
 
 const KatasDetailPage = () => {
-  const [kata, setKata]: any= useState([])
-  console.log(kata)
+    const [kata, setKata]: any= useState([]);
+    const [showSolution, setShowSolution] = useState(false)
+    
+    //find id from params
+    const { id } = useParams();
+    
+    //variable to navigate between router's stacks
+    const navigate = useNavigate();
+
+    //get token
+    let token = useSessionJWT('sessionJWT')
+
+    //traigo el detalle y seteo el estado
+    const detail = async(token:string,id:string) => {
+      const response:any  = await getKatasById(token, id)
+      setKata(response)
+    }
   
-  //find id from params
-  const { id } = useParams();
-  
-  //variable to navigate between router's stacks
-  const navigate = useNavigate();
 
-  //get token
-  let token = useSessionJWT('sessionJWT')
+    useEffect(() => {
+          if(!token){
+            return navigate('/login');
+          }else{
+            if(id){
+            detail(token, id)
+            }     
+            else{
+              return navigate('/katas');
+            }
+        }
+      }, [id, navigate, token]);
 
-  const detail = async(token:string,id:string) => {
-    const response:any  = await getKatasById(token, id)
-    setKata(response)
-  }
- 
+    
 
-  useEffect(() => {
-    if(!token){
-      return navigate('/login');
-    }else{
-      if(id){
-       detail(token, id)
-      }     
-      else{
-        return navigate('/katas');
-      }
-  }
-}, [id, navigate, token]);
+    return (
+      <div>
+        <h1>Katas Detail Code: {id}</h1>
+       
+        { kata ? 
+          <div>
+            <h3>Nombre: <strong>{kata.name}</strong></h3>
+            <h3>Creator: {kata.creator}</h3>
+            <h3>Description: {kata.description}</h3> 
+            <h3>Level: {kata.level}</h3>
+            <h3>Ranking: {kata.stars}</h3>
+            <h3>Participants: {kata.participants}</h3>
+            <h3>Intents: {kata.intents}</h3>
 
-const handleClick: any = ()=> {
-  navigate('/katas')
-}
+            {/* boton que muestra o no la solucion */}
+            <button onClick={()=> setShowSolution(!showSolution)}>{showSolution? 'Show Solution':'Hide Solution'}</button>
 
-  return (
-    <div>
-      <h1>Katas Detail Code: {id}</h1>
-      { kata ? 
-        <div>
-          <h2>Nombre: {kata.name}</h2>
-          <h2>Creator: {kata.creator}</h2>
-          <h2>Description: {kata.description}</h2> 
-          <h2>Level: {kata.level}</h2>
-          <h2>Ranking: {kata.stars}</h2>
-          <h2>Participants: {kata.participants}</h2>
-          <h2>Intents: {kata.intents}</h2>
-          <h2>Solution: {kata.solution}</h2>
-      
+            { showSolution ?  <Editor>{kata.solution}</Editor>: null }
+          </div>
+          : 
+          <p>'Kata Not Found'</p>
+        }
       </div>
-      
-        : <p>'Kata Not Found'</p>
-      }
-
-      <button onClick={handleClick}>KATAS</button>
-      </div>
-  )
+    )
 }
 
 export default KatasDetailPage

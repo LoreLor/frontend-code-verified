@@ -11,6 +11,15 @@ interface EditorProps {
 
 const Editor = ({ language, children, solution }: EditorProps) => {
 
+    const exampleCode = `
+(function someDemo() {
+  var test = "Hello World!";
+  console.log(test);
+})();
+
+return () => <App />;
+`;
+
     return (
         <Highlight {...defaultProps} code={children} language='typescript'>
             {({ className, style, tokens, getLineProps, getTokenProps }) => (
