@@ -32,7 +32,7 @@ const KatasPage = () => {
     }).catch((error) => console.error(`[Get All Katas Error] ${error}`))
      
       }
-    },[token])
+    },[navigate, token])
 
 
     const handleClick = (id: number) =>{

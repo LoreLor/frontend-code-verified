@@ -1,3 +1,4 @@
+import { Box, Button, TextField } from '@mui/material';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,8 +13,8 @@ const LoginForm = () => {
     const navigate = useNavigate();
 
     const initialCredentials = {
-        email:'',
-        password:''
+        email: '',
+        password: ''
     }
     // define schema validation with yup
     const loginSchema = Yup.object().shape(
@@ -22,76 +23,109 @@ const LoginForm = () => {
             password: Yup.string().required('Password is required')
         }
     );
-    
+
     return (
-    <div>
-        <Formik
-            /**  config formik */
-            initialValues = {initialCredentials}
-            validationSchema = {loginSchema}
-            onSubmit = {async(values) => {
-                // await new Promise((res) => setTimeout(res,1000))
-                const {data} = await login(values.email, values.password)
+        <Box>
+            <Formik
+                /**  config formik */
+                initialValues={initialCredentials}
+                validationSchema={loginSchema}
+                onSubmit={async (values) => {
+                    // await new Promise((res) => setTimeout(res,1000))
+                    try {
+                        const { data } = await login(values.email, values.password)
                         alert(JSON.stringify(values, null, 2))
                         console.table(values)
-                        sessionStorage.setItem('sessionJWT',data.res.token)
-                        navigate('/')
-            }}
-        >
-            
-            {/* config de valores a inyectar en el formulario */}
-            {
-                ({
-                    values, 
-                    touched,
-                    errors, 
-                    isSubmitting,
-                    handleSubmit,
-                    handleChange, 
-                    handleBlur}) => (
-                        <Form>
-                            {/* email */}
-                            <label htmlFor='email'>Email: {' '}</label>
-                            <Field
-                                id='email'
-                                type='email'
-                                name='email'
-                                placeholder='example@email.com'
-                            />
+                        sessionStorage.setItem('sessionJWT', data.res.token)
+                        navigate("/")
+
+                    } catch (error) {
+                        console.log(error)
+                        alert('Check your data')
+                    }
+                }}
+            >
+
+                {/* config de valores a inyectar en el formulario */}
+                {
+                    ({
+                        values,
+                        touched,
+                        errors,
+                        isSubmitting,
+                        handleSubmit,
+                        handleChange,
+                        handleBlur }) => (
+                        <Form >
+                            <Box sx={{
+                                mt: 1,
+                                display: 'flex',
+                                justifyContent: 'center',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                width:'100%'
+                            }}
+                            >
+                                <Field
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    component={TextField}
+                                    fullWidth
+                                    placeholder="Email Address"
+                                    required
+                                    autoFocus
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+
+                                />
 
                                 {/* Email Errors */}
-                            {
-                                errors.email && touched.email && (<ErrorMessage name='email' component='div'></ErrorMessage>)
-                            }
-                            <br />
-                            {/* password */}
-                            <label htmlFor='password'>Password: {' '}</label>
-                            <Field
-                                id='password'
-                                type='password'
-                                name='password'
-                                placeholder='password'
-                            />
+                                {
+                                    errors.email && touched.email && (<ErrorMessage name='email' component='div'></ErrorMessage>)
+                                }
+                                <br />
+                                {/* password */}
 
-                            {/* Password Errors */}
-                            {
-                                errors.password && touched.password && (<ErrorMessage name='password' component='div'></ErrorMessage>)
-                            }
+                                <Field
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    component={TextField}
+                                    fullWidth
+                                    required
+                                    placeholder='Password'
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
 
-                            {/* sumit form */}
-                            <div>
-                                <button type='submit'>Login</button>
-                            </div>
+                                />
 
-                            {/* message if the form submit */}
-                            {
-                                isSubmitting ? (<p>Checking credentiasl...</p>) : null 
-                            }
-                    </Form>
-                )
-            }
-        </Formik>
-    </div>
+                                {/* Password Errors */}
+                                {
+                                    errors.password && touched.password && (<ErrorMessage name='password' component='div'></ErrorMessage>)
+                                }
+
+                                {/* sumit form */}
+                                <Button
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    sx={{ mt: 3, mb: 2 }}
+                                >
+                                    Login
+                                </Button>
+
+                                {/* message if the form submit */}
+                                {
+                                    isSubmitting ? (<p>Checking credentiasl...</p>) : null
+                                }
+                                <br />
+                            </Box>
+                        </Form>
+                    )
+                }
+            </Formik>
+        </Box>
     )
 }
 

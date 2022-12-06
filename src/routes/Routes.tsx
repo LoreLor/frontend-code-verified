@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+import Dashboard from '../components/dashboard/Dashboard';
 import HomePage from '../pages/HomePage';
 import KatasDetailPage from '../pages/KatasDetailPage';
 import KatasPage from '../pages/KatasPage';
@@ -13,6 +14,7 @@ const AppRoutes: any = ()=> {
             <Route path='/' element={<HomePage/>}></Route>
             <Route path='/login' element={<LoginPage/>}></Route>
             <Route path='/register' element={<RegisterPages/>}></Route>
+            <Route path='/dashboard' element={<Dashboard />}></Route>
             <Route path='/katas' element={<KatasPage/>}></Route>
             <Route path='/katas/:id' element={<KatasDetailPage/>}></Route>
             

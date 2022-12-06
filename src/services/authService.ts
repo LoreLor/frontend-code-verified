@@ -27,11 +27,11 @@ export const login = async(email:string, password:string) => {
  * @param {number} age 
  * @returns 
  */
-export const register = async(email:string, password:string, name:string, age:number, katas:string[]) => {
+export const register = async(name:string, email:string, password:string, age:number, katas:string[]) => {
     const body = {
+        name:name,
         email:email,
         password:password,
-        name:name,
         age:age,
         katas:katas
     }

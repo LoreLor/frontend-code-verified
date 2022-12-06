@@ -1,0 +1,11 @@
+.inputError {
+    background-color: #fce4e4;
+    border: 1px solid #cc0033;
+    outline: none;
+  }
+
+.inputSuccess{
+  background-color: #a9f5af;
+    border: 1px solid #00cc11;
+    outline: none;
+}
