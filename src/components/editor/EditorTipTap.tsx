@@ -14,6 +14,7 @@ import {lowlight} from 'lowlight'
 
 import CodeBlock from './CodeBlock'
 import './styles/mainStyle.scss'
+import './styles/codeBlock.scss'
 
     // lowlight.registerLanguage('html', html)
     // lowlight.registerLanguage('css', css)
