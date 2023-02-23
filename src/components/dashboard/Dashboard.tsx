@@ -28,6 +28,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 // List for MenuItems
 import MenuItems from './MenuItems'
+import NewEditor from '../editor/NewEditor'
+//import EditorTipTap from '../editor/EditorTipTap'
 
 
 
@@ -167,7 +169,7 @@ const Dashboard = () => {
 
                     {/* List of Menu */}
                     <List component={'nav'}>
-                        { MenuItems }
+                        <MenuItems />
                     </List>
                 </Drawer>
 
@@ -195,6 +197,8 @@ const Dashboard = () => {
                                 height:240
                                 }}
                             >
+                                {/* <EditorTipTap /> */}
+                                <NewEditor />
                             </Paper>
                         </Grid>       
                     </Container>

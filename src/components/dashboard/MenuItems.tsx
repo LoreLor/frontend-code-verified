@@ -4,14 +4,36 @@ import PeopleIcon from '@mui/icons-material/People';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import BarChartIcon from '@mui/icons-material/BarChart';
 //List
+
+
+
+
+
 import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
-const MenuItems = (
+    
+
+
+const MenuItems = ()=>{
+    const navigate = useNavigate()
+
+    const handleKatas = () => {
+        navigate('/katas')
+    }
+
+    const handleUsers = () => {
+        navigate('/users')
+    }
+
+
+
+
+    return (
         <>
             {/* Dashboard Button to Katas*/}
-            <ListItemButton>
+            <ListItemButton onClick={handleKatas}>
                 <ListItemIcon>
                     <DashboardIcon />
                 </ListItemIcon>
@@ -19,7 +41,7 @@ const MenuItems = (
             </ListItemButton>
 
             {/* Dashboard Button to Users*/}
-            <ListItemButton>
+            <ListItemButton onClick={handleUsers}>
                 <ListItemIcon>
                     <PeopleIcon />
                 </ListItemIcon>
@@ -35,6 +57,7 @@ const MenuItems = (
             </ListItemButton>
         </>
     )
+}
 
 
 export default MenuItems

@@ -7,10 +7,7 @@ const HomePage = () => {
  
   return (
     <>
-    
         <Dashboard />
-      
-      
     </>
   )
 }

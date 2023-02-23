@@ -5,6 +5,7 @@ import KatasDetailPage from '../pages/KatasDetailPage';
 import KatasPage from '../pages/KatasPage';
 import LoginPage from '../pages/LoginPage';
 import RegisterPages from '../pages/RegisterPages';
+import UsersPage from '../pages/UsersPage';
 
 
 
@@ -17,6 +18,7 @@ const AppRoutes: any = ()=> {
             <Route path='/dashboard' element={<Dashboard />}></Route>
             <Route path='/katas' element={<KatasPage/>}></Route>
             <Route path='/katas/:id' element={<KatasDetailPage/>}></Route>
+            <Route path='/users' element={<UsersPage />}></Route>
             
             {/* Redirect when page not found */}
             <Route path='*' element={<Navigate to='/' replace/>}></Route>
