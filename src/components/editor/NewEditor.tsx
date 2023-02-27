@@ -78,11 +78,11 @@ const NewEditor = () => {
       <select>
         <option value=" ">Select Language</option>
         {
-          languages.map((language, index) => (
+          languages.map((language) => (
               <option 
                   onChange={handleLanguageChange}  
                   value={languageSelected} 
-                  key={index}
+                  key={language+1}
                   >
                     {language}
               </option>

@@ -24,8 +24,8 @@ const CodeBlock = ({ node: { attrs: { language: defaultLanguage } }, updateAttri
         <option disabled>
           —
         </option>
-        {extension.options.lowlight.listLanguages().map((lang: string, index:number) => (
-          <option key={index} value={lang}>
+        {extension.options.lowlight.listLanguages().map((lang: string) => (
+          <option key={lang+1} value={lang}>
             {lang}
           </option>
         ))}

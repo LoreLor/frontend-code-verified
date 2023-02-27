@@ -26,14 +26,22 @@ const FileUploader = () => {
         setVideoSrc(vidSrc);
     };
 
+    //TODO
+    const handleUpload=(response: any)=>{
+        //check the responses here
+        console.log("responses", response);
+      }
 
+//TODO: revisar back - no funciona
 
   return (
     <>
         <Dropzone 
             style={{ minWidth: "505px" }}
-            onChange={updateFiles} 
             value={files}
+            onChange={updateFiles} 
+            url={"http://localhost:8080/api/katas/uploadFile"}
+            onUploadFinish={handleUpload}
         >
         {files.length > 0 &&
             files.map((file:FileValidated) => (

@@ -30,7 +30,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import MenuItems from './MenuItems'
 //import NewEditor from '../editor/NewEditor'
 //import EditorTipTap from '../editor/EditorTipTap'
-import FileUploader from '../uploaders/FileUploader'
+//import FileUploader from '../uploaders/FileUploader'
+import FileUploadPond from '../uploaders/FileUploadPond'
 
 
 
@@ -199,7 +200,8 @@ const Dashboard = () => {
                             >
                                  {/* <EditorTipTap /> */}
                                 {/* <NewEditor /> */}
-                                <FileUploader />
+                                {/* <FileUploader /> */}
+                                <FileUploadPond />
                             </Paper>
                         </Grid>       
                     </Container>
