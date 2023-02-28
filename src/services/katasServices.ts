@@ -28,3 +28,4 @@ export const getKatasById = async(token:string, id:string) =>{
         console.log(error)
     }
 }
+

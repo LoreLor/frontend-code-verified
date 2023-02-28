@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Dropzone, FileItem, FullScreenPreview, VideoPreview, FileValidated } from "@dropzone-ui/react";
+import axios from '../../utils/config/axios.config';
 
 
 
@@ -27,9 +28,15 @@ const FileUploader = () => {
     };
 
     //TODO
-    const handleUpload=(response: any)=>{
+    const handleUpload = async(response: any)=>{
         //check the responses here
-        console.log("responses", response);
+        try {
+            const res = await axios.post('/katas/uploadFile', response)
+            console.log("responses", res);
+            
+        } catch (error) {
+            
+        }
       }
 
 //TODO: revisar back - no funciona

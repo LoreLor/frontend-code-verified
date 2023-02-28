@@ -29,9 +29,9 @@ import LogoutIcon from '@mui/icons-material/Logout';
 // List for MenuItems
 import MenuItems from './MenuItems'
 //import NewEditor from '../editor/NewEditor'
-//import EditorTipTap from '../editor/EditorTipTap'
+import EditorTipTap from '../editor/EditorTipTap'
 //import FileUploader from '../uploaders/FileUploader'
-import FileUploadPond from '../uploaders/FileUploadPond'
+//import FileUploadPond from '../uploaders/FileUploadPond'
 
 
 
@@ -198,10 +198,10 @@ const Dashboard = () => {
                                 flexDirection:'column'
                                 }}
                             >
-                                 {/* <EditorTipTap /> */}
-                                {/* <NewEditor /> */}
+                                 <EditorTipTap />
+                                 {/* <NewEditor /> */}
                                 {/* <FileUploader /> */}
-                                <FileUploadPond />
+                                {/* <FileUploadPond /> */}
                             </Paper>
                         </Grid>       
                     </Container>

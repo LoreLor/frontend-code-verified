@@ -1,6 +1,6 @@
 // import { lowlight } from 'lowlight/lib/core'
-// import javascript from 'highlight.js/lib/languages/javascript'
-// lowlight.registerLanguage('javascript', javascript)
+//import javascript from 'highlight.js/lib/languages/javascript'
+//lowlight.registerLanguage('javascript', javascript)
 import React from 'react'
 
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
@@ -10,7 +10,7 @@ import Text from '@tiptap/extension-text'
 import { EditorContent, ReactNodeViewRenderer, useEditor } from '@tiptap/react'
 
 // load all highlight.js languages
-import {lowlight} from 'lowlight'
+import {lowlight} from 'lowlight/lib/core'
 
 import CodeBlock from './CodeBlock'
 import './styles/mainStyle.scss'
